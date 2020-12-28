@@ -1,0 +1,170 @@
+﻿@using WebMatrix.Data;
+
+@{
+    Layout = "~/inc/_layout.cshtml";
+
+
+    var nome = Session["user"];
+    Database bd = Database.Open("Conexao");
+    var dados = bd.Query("SELECT * FROM usuarios WHERE nome = @0", nome);
+    bd.Close();
+
+    foreach (var item in dados)
+    {
+
+        //INICIALIZAR ASTEROIDES
+
+        string Carbono = Request["Carbono"];
+        string Niobio = Request["Niobio"];
+        string Plutonio = Request["Plutonio"];
+        int Quantidade = Convert.ToInt32(Request["qtdAst"]);
+        string sel = " Selecione o tipo de Asteroide para inicializar !";
+        string suf = " Você não tem Asteroides suficientes !";
+        string car = " Asteroide de Carbono iniciado com sucesso ! !";
+        string nio = " Asteroide de Niobio iniciado com sucesso !";
+        string plu = " Asteroide de Plutonio iniciado com sucesso !";
+
+
+
+
+        if (IsPost)
+        {
+            if (Request.Form["iniAst"] == null)
+            {
+                Session["mensagem"] = sel;
+            }
+
+            else
+            {
+
+                if (item.AstLivre < Quantidade)
+                {
+                    Session["mensagem"] = suf;
+                }
+
+                else
+                {
+
+                    var iniAst = Request["iniAst"];
+
+                    Database bd1 = Database.Open("Conexao");
+                    var inicia = bd1.Execute("UPDATE usuarios SET AstLivre = AstLivre-@0 WHERE nome= @1", Quantidade, nome);
+
+                    switch (iniAst)
+                    {
+                        case "AstCarbono":
+                            var inicia1 = bd1.Execute("UPDATE usuarios SET AstCarbono = AstCarbono+@0 WHERE nome= @1", Quantidade, nome);
+                            Session["mensagem"] = car;
+                            break;
+
+                        case "AstNiobio":
+                            var inicia2 = bd1.Execute("UPDATE usuarios SET AstNiobio = AstNiobio+@0 WHERE nome= @1", Quantidade, nome);
+                            Session["mensagem"] = nio;
+                            break;
+
+                        case "AstPlutonio":
+                            var inicia3 = bd1.Execute("UPDATE usuarios SET AstPlutonio = AstPlutonio+@0 WHERE nome= @1", Quantidade, nome);
+                            Session["mensagem"] = plu;
+                            break;
+
+
+                    }
+
+
+                    Response.Redirect("~/recursos.cshtml");
+
+                    bd.Close();
+
+
+                }
+            }
+
+
+        }
+
+
+        //TABELA DE RECURSOS
+
+        <link href="~/styles/stylesheet.css" rel="stylesheet" />
+        <br />
+        <table width="50%">
+            <caption style="font-size:14px">Recursos do planeta</caption>
+            <tr>
+                <th>Carbono</th>
+                <th>Niobio</th>
+                <th>Plutonio</th>
+            </tr>
+            <tr>
+                <td>@item.carbono</td>
+                <td>@item.niobio</td>
+                <td>@item.plutonio</td>
+            </tr>
+        </table>
+
+
+        // TABELA DE ASTEROIDES
+
+        <br />
+        <table width="50%">
+            <caption style="font-size:14px">Asteroides do planeta</caption>
+            <tr>
+                <th>Asteroide de Carbono</th>
+                <th>Asteroide de Niobio</th>
+                <th>Asteroide de Plutonio</th>
+                <th>Asteroides Livres</th>
+
+            </tr>
+            <tr>
+                <td>@item.AstCarbono</td>
+                <td>@item.AstNiobio</td>
+                <td>@item.AstPlutonio</td>
+                <td>@item.AstLivre</td>
+            </tr>
+        </table>
+
+        <br />
+        <p> Inicializar Asteroides</p>
+
+
+
+        <form action="" method="post">
+
+            <div>
+                <input type="radio" name="iniAst" value="AstCarbono" /> Carbono <br />
+                <input type="radio" name="iniAst" value="AstNiobio" /> Niobio <br />
+                <input type="radio" name="iniAst" value="AstPlutonio" /> Plutonio<br />
+                Quantidade: <input type="number" name="qtdAst" min="1" value="1" width="100" />
+
+            </div>
+            <br />
+
+            <div><input type="submit" name="iniciar" value="Iniciar" /></div>
+
+
+        </form>
+
+        <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+        </script>
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

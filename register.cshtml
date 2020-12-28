@@ -1,0 +1,102 @@
+﻿@using WebMatrix.Data;
+
+@{
+    Layout = "~/inc/_layout.cshtml";
+
+
+    bool apresentar_formulario = true;
+    bool avancar = true;
+
+    if (IsPost)
+    {
+        string nome = Request["name"];
+        string senha = Request["senha"];
+        string email = Request["email"];
+
+        if (avancar)
+        {
+            Database bd = Database.Open("Conexao");
+            var dados = bd.Query("SELECT * FROM usuarios WHERE nome = @0", nome);
+            if (@dados.Count() != 0)
+            {
+                <p>Já existe um usuário com este nome!</p>
+                <p>Por favor escolha outro nome para se cadastrar</p>
+                avancar = false;
+            }
+        }
+
+
+        if (nome == "" || senha == "" || email == "")
+        {
+            <p>Preencha todos os campos!</p>
+            avancar = false;
+        }
+
+        if (avancar)
+        {
+            Database bd = Database.Open("Conexao");
+            var id = bd.QueryValue("SELECT MAX(id) FROM usuarios");
+            if ((object)id == DBNull.Value)
+            {
+                id = 0;
+
+            }
+            else
+            {
+                id ++;
+            }
+
+            var dados = bd.Execute("INSERT INTO usuarios VALUES (@0,@1,@2,@3,1000,1000,1000,0,0,0,3)", id,nome, senha, email);
+
+            <p> Conta criada com sucesso! </p>
+            <p> COLOCAR AQUI A PAGINA DE LOGIN</p>
+               apresentar_formulario = false;
+        }
+
+
+
+    }
+
+    if (apresentar_formulario)
+    {
+
+        <form action="" method="post">
+
+            <p>Nome:</p>
+            <input type="Text" name="name" size="30" maxlength="15">
+            <p>Senha:</p>
+            <input type="password" name="senha" size="30" maxlength="15">
+            <p>Email:</p>
+            <input type="email" name="email" size="30" maxlength="40">
+            <p></p>
+            <input type="submit" name="submit" value="Criar nova conta" />
+
+
+        </form>
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+

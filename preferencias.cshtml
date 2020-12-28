@@ -1,0 +1,48 @@
+﻿@using WebMatrix.Data;
+
+@{
+    Layout = "~/inc/_layout.cshtml";
+
+
+    var nome = Session["user"];
+
+    Database bd = Database.Open("Conexao");
+    var dados = bd.Query("SELECT * FROM usuarios WHERE nome = @0", nome);
+
+
+    if (IsPost)
+    {
+
+        if (Request.Form["submit"] != null)
+        {
+
+            string senha = Request["senha"];
+            var dadosAltera = bd.Execute("UPDATE usuarios SET senha = (@0) WHERE nome= @1", senha, nome);
+            <p>Senha alterada com sucesso !</p>
+            bd.Close();
+        }
+
+        if (Request.Form["deletar"] != null)
+        {
+
+            var dadosDel = bd.Execute("DELETE FROM usuarios WHERE nome = (@0)", nome);
+            bd.Close();
+            Session.Abandon();
+            Response.Redirect("~/index.cshtml");
+
+        }
+    }
+
+
+
+<form action="" method="post">
+    <p>Alterar Senha:</p>
+    <input type="password" name="senha" size="30" maxlength="15" value="">
+    <p></p>
+    <input type="submit" name="submit" value="Alterar" />
+    <p></p>
+    <p>Deletar conta:</p>
+    <input type="submit" name="deletar" value="Deletar conta" />
+</form>
+
+    }

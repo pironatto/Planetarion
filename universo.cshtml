@@ -1,0 +1,27 @@
+﻿@using WebMatrix.Data;
+
+@{
+    Layout = "~/inc/_layout.cshtml";
+
+
+
+    Database bd = Database.Open("Conexao");
+    var dados = bd.Query("SELECT * FROM usuarios");
+
+    foreach (var item in dados)
+    {
+        <table>
+            <tr>
+                <td><b>ID #: @item.id </td>
+                <td><b>Nome: @item.nome</td>
+            </tr>
+
+        </table>
+    }
+
+
+
+
+
+
+}

@@ -1,0 +1,38 @@
+﻿@using WebMatrix.Data;
+
+
+@{
+    Layout = "~/inc/_layout.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/styles/stylesheet.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <p><font size="1">Game status: </font></p><br />
+    <p><font color="red">(INSERIR VARIAVEL DOS TICKS)</font> segundos após o último tick.</p><br />
+    @{
+
+        if (Session.Contents["user"] != null)
+        {
+            Database bd = Database.Open("Conexao");
+            var dados = bd.Query("SELECT * FROM usuarios");
+            <p>@dados.Count() contas registradas<br /></p>
+            <p>@Session.Count  usuarios online<br /></p>
+
+        }
+
+    }
+
+
+    <p> Tempo corrente: (VARIAVEL DE TEMPO DO TICK) <br /></p>
+
+</body>
+</html>
+
