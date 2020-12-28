@@ -11,6 +11,10 @@
 
     foreach (var item in dados)
     {
+        int custo = (item.AstNiobio + item.AstCarbono + item.AstPlutonio) * 2;
+
+
+
 
         //INICIALIZAR ASTEROIDES
 
@@ -23,6 +27,7 @@
         string car = " Asteroide de Carbono iniciado com sucesso ! !";
         string nio = " Asteroide de Niobio iniciado com sucesso !";
         string plu = " Asteroide de Plutonio iniciado com sucesso !";
+        string cus = " Não há nióbio suficiente para inciar asteroides";
 
 
 
@@ -36,8 +41,12 @@
 
             else
             {
+                if (item.niobio < custo)
+                {
+                    Session["mensagem"] = cus;
+                }
 
-                if (item.AstLivre < Quantidade)
+               else if (item.AstLivre < Quantidade)
                 {
                     Session["mensagem"] = suf;
                 }
@@ -54,16 +63,21 @@
                     {
                         case "AstCarbono":
                             var inicia1 = bd1.Execute("UPDATE usuarios SET AstCarbono = AstCarbono+@0 WHERE nome= @1", Quantidade, nome);
+                            var inicia10 = bd1.Execute("UPDATE usuarios SET niobio = niobio - @0 WHERE nome= @1", custo, nome);
                             Session["mensagem"] = car;
                             break;
 
                         case "AstNiobio":
                             var inicia2 = bd1.Execute("UPDATE usuarios SET AstNiobio = AstNiobio+@0 WHERE nome= @1", Quantidade, nome);
+                            var inicia20 = bd1.Execute("UPDATE usuarios SET niobio = niobio - @0 WHERE nome= @1", custo, nome);
+
                             Session["mensagem"] = nio;
                             break;
 
                         case "AstPlutonio":
                             var inicia3 = bd1.Execute("UPDATE usuarios SET AstPlutonio = AstPlutonio+@0 WHERE nome= @1", Quantidade, nome);
+                            var inicia30 = bd1.Execute("UPDATE usuarios SET niobio = niobio - @0 WHERE nome= @1", custo, nome);
+
                             Session["mensagem"] = plu;
                             break;
 
@@ -124,6 +138,8 @@
 
         <br />
         <p> Inicializar Asteroides</p>
+        <p> Custo : @custo</p>
+
 
 
 
