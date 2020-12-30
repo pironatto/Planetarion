@@ -1,0 +1,134 @@
+﻿@using WebMatrix.Data;
+
+@{ Layout = "~/inc/_layout.cshtml";
+
+    int Carbono, Niobio, Plutonio;
+    int tempo = 0; // SERÁ USADO PARA CONTROLE DO TEMPO DE CONSTRUÇÃO
+    string A = "";
+
+
+    var nome = Session["user"];
+    Database bd = Database.Open("Conexao");
+    var dados = bd.Query("SELECT * FROM usuarios WHERE nome = @0", nome);
+
+    foreach (var item in dados)
+    {
+        Carbono = item.carbono;
+        Niobio = item.niobio;
+        Plutonio = item.plutonio;
+
+        foreach (string build in Request.QueryString)
+        {
+            if (build != null)
+            {
+
+                if (Request[build] == "minaNiobio" && item.refinaria == 0 && Carbono >= 100) { bd.Execute("UPDATE usuarios SET refinaria = 1, carbono = carbono - 100 WHERE nome= @0", nome); }
+                if (Request[build] == "minaCarbono" && item.refinariacarbono == 0 && Carbono >= 200) { bd.Execute("UPDATE usuarios SET refinariacarbono = 1, carbono = carbono - 200 WHERE nome= @0", nome); }
+                if (item.refinariacarbono == 1)
+                {
+                    if (Request[build] == "estaleiros" && item.estaleiro == 0 && Carbono >= 400) { bd.Execute("UPDATE usuarios SET estaleiro = 1, carbono = carbono - 400 WHERE nome= @0", nome); }
+                }
+                if (item.estaleiro == 1)
+                {
+                    if (Request[build] == "estaleirosavancados" && item.estaleiroavancado == 0 && Carbono >= 800) { bd.Execute("UPDATE usuarios SET estaleiroavancado = 1, carbono = carbono - 800 WHERE nome= @0", nome); }
+                }
+                if (item.estaleiroavancado == 1)
+                {
+                    if (Request[build] == "refinariaavancada" && item.refinariaavancada == 0 && Carbono >= 1000) { bd.Execute("UPDATE usuarios SET refinariaavancada = 1, carbono = carbono - 1000 WHERE nome= @0", nome); }
+                }
+                if (item.refinariaavancada == 1)
+                {
+                    if (Request[build] == "drones" && item.fabricadrones == 0 && Carbono >= 2000) { bd.Execute("UPDATE usuarios SET fabricadrones = 1, carbono = carbono - 2000 WHERE nome= @0", nome); }
+                }
+                if (item.fabricadrones == 1)
+                {
+                    if (Request[build] == "drones" && item.fabricadrones == 0 && Carbono >= 2000) { bd.Execute("UPDATE usuarios SET fabricadrones = 1, carbono = carbono - 2000 WHERE nome= @0", nome); }
+                }
+                if (item.fabricadrones == 1)
+                {
+                    if (Request[build] == "navemae" && item.estaleiroorbital == 0 && Carbono >= 3000) { bd.Execute("UPDATE usuarios SET estaleiroorbital = 1, carbono = carbono - 3000 WHERE nome= @0", nome); }
+                }
+
+                Response.Redirect("~/construcao.cshtml");
+            }
+
+
+        }
+
+
+    }
+
+    bd.Close();
+
+
+
+    <table width="50%">
+        <caption style="font-size:14px">Construções disponíveis para o planeta: </caption>
+        <tr>
+            <th>Construção</th>
+            <th>Descrição</th>
+            <th>Tempo</th>
+            <th>Custo em Carbono</th>
+            <th>Clique para Construír</th>
+        </tr>
+        <tr>
+            <td>Refinaria de Niobio</td>
+            <td>Ativar minas de niobio</td>
+            <td>10</td>
+            <td>100</td>
+            <td><a href="~/construcao.cshtml?building=minaNiobio">Construir</a></td>
+        </tr>
+        <tr>
+            <td>Refinaria de Carbono</td>
+            <td>Ativar minas de carbono</td>
+            <td>12</td>
+            <td>200</td>
+            <td><a href="~/construcao.cshtml?building=minaCarbono">Construir</a></td>
+        </tr>
+        <tr>
+            <td>Estaleiros</td>
+            <td>Iniciar produção de caças</td>
+            <td>16</td>
+            <td>400</td>
+            <td><a href="~/construcao.cshtml?building=estaleiros">Construir</a></td>
+        </tr>
+        <tr>
+            <td>Estaleiros avançados</td>
+            <td>Iniciar produção de fragatas</td>
+            <td>16</td>
+            <td>800</td>
+            <td><a href="~/construcao.cshtml?building=estaleirosavancados">Construir</a></td>
+        </tr>
+        <tr>
+            <td>Refinaria avançada</td>
+            <td>Ativar minas de Plutonio</td>
+            <td>20</td>
+            <td>1000</td>
+            <td><a href="~/construcao.cshtml?building=refinariaavancada">Construir</a></td>
+        </tr>
+        <tr>
+            <td>Fabrica de Drones</td>
+            <td>Inicia a produção de drones espiões</td>
+            <td>20</td>
+            <td>2000</td>
+            <td><a href="~/construcao.cshtml?building=drones">Construir</a></td>
+        </tr>
+        <tr>
+            <td>Estaleiro orbital</td>
+            <td>Possibilita a produção de naves mãe</td>
+            <td>24</td>
+            <td>3000</td>
+            <td><a href="~/construcao.cshtml?building=navemae">Construir</a></td>
+        </tr>
+
+
+
+
+
+
+    </table>
+
+
+}
+
+
