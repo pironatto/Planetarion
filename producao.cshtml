@@ -1,0 +1,133 @@
+﻿@using WebMatrix.Data;
+
+@{
+    Layout = "~/inc/_layout.cshtml";
+
+    var nome = Session["user"];
+    Database bd = Database.Open("Conexao");
+    var dados = bd.Query("SELECT * FROM usuarios WHERE nome = @0", nome);
+    bd.Close();
+
+    foreach (var item in dados)
+    {
+        int Asteca = item.Asteca;
+        int Inca = item.Inca;
+        int Maia = item.Maia;
+        int Persa = item.Persa;
+
+        if (item.estaleiro == 1) // LIBERA A CONSTRUÇÃO DE CAÇAS
+        {
+
+        }
+
+
+        //TABELA DE NAVES
+
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <link href="~/styles/stylesheet.css" rel="stylesheet" />
+        </head>
+        <body>
+
+            <table width="50%">
+                <caption style="font-size:14px">Naves do Planeta</caption>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Quantidade</th>
+                </tr>
+                <tr>
+                    <td>Asteca</td>
+                    <td>Caça</td>
+                    <td>@Asteca</td>
+                </tr>
+                <tr>
+                    <td>Inca</td>
+                    <td>Fragata</td>
+                    <td>@Inca</td>
+                </tr>
+                <tr>
+                    <td>Maia</td>
+                    <td>Deestroier</td>
+                    <td>@Maia</td>
+                </tr>
+                <tr>
+                    <td>Persa</td>
+                    <td>Nave-mãe</td>
+                    <td>@Persa</td>
+                </tr>
+            </table>
+
+            <br />
+            <p> Construir Naves</p>
+
+            <form action="" method="post">
+
+                <table width="50%">
+                    <tr>
+                        <td><input type="radio" name="cons" value="Asteca" /> Asteca </td>
+                        <td>Custo : 1000 carbono </td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="cons" value="Inca" /> Inca </td>
+                        <td>Custo : 1000 carbono e 2000 niobio</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="cons" value="Maia" /> Maia </td>
+                        <td>Custo : 2000 carbono e 2000 niobio </td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="cons" value="Persa" /> Persa </td>
+                        <td>Custo : 4000 carbono e 2000 niobio </td>
+                    </tr>
+
+                </table>
+                <br />
+                <div>
+                    Quantidade: <input type="number" name="qtd" min="1" value="1" width="100" />
+                </div>
+                <br />
+                <div><input style="font-size:16px" type="submit" name="iniciar" value="Construir" /></div>
+
+
+            </form>
+
+        </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+         
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+

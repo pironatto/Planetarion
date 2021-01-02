@@ -4,12 +4,11 @@
 
     int Carbono, Niobio, Plutonio;
     int tempo = 0; // SERÁ USADO PARA CONTROLE DO TEMPO DE CONSTRUÇÃO
-    string A = "";
-
 
     var nome = Session["user"];
     Database bd = Database.Open("Conexao");
     var dados = bd.Query("SELECT * FROM usuarios WHERE nome = @0", nome);
+
 
     foreach (var item in dados)
     {
@@ -17,13 +16,27 @@
         Niobio = item.niobio;
         Plutonio = item.plutonio;
 
+        if (item.refinaria == 1) { Session["mensagem"] = "Refinaria de Niobio em Construção..."; }
+        if (item.refinariacarbono == 1) { Session["mensagem"] = "Refinaria de Carbono em Construção..."; }
+        if (item.estaleiro == 1) { Session["mensagem"] = "Estaleiros em Construção..."; }
+        if (item.estaleiroavancado == 1) { Session["mensagem"] = "Estaleiros avançados em Construção..."; }
+        if (item.refinariaavancada == 1) { Session["mensagem"] = "Refinaria de Plutonio em Construção..."; }
+        if (item.fabricadrones == 1) { Session["mensagem"] = "Fábrica de drones em Construção..."; }
+        if (item.estaleiroorbital == 1) { Session["mensagem"] = "Estaleiro orbital em Construção..."; }
+
         foreach (string build in Request.QueryString)
         {
             if (build != null)
             {
 
                 if (Request[build] == "minaNiobio" && item.refinaria == 0 && Carbono >= 100) { bd.Execute("UPDATE usuarios SET refinaria = 1, carbono = carbono - 100 WHERE nome= @0", nome); }
-                if (Request[build] == "minaCarbono" && item.refinariacarbono == 0 && Carbono >= 200) { bd.Execute("UPDATE usuarios SET refinariacarbono = 1, carbono = carbono - 200 WHERE nome= @0", nome); }
+
+                if (item.refinaria ==1)
+                {
+                    if (Request[build] == "minaCarbono" && item.refinariacarbono == 0 && Carbono >= 200) { bd.Execute("UPDATE usuarios SET refinariacarbono = 1, carbono = carbono - 200 WHERE nome= @0", nome); }
+
+                }
+
                 if (item.refinariacarbono == 1)
                 {
                     if (Request[build] == "estaleiros" && item.estaleiro == 0 && Carbono >= 400) { bd.Execute("UPDATE usuarios SET estaleiro = 1, carbono = carbono - 400 WHERE nome= @0", nome); }
@@ -76,7 +89,14 @@
             <td>Ativar minas de niobio</td>
             <td>10</td>
             <td>100</td>
+            @if (true)
+            {
+
+            }
             <td><a href="~/construcao.cshtml?building=minaNiobio">Construir</a></td>
+
+
+
         </tr>
         <tr>
             <td>Refinaria de Carbono</td>
@@ -84,6 +104,10 @@
             <td>12</td>
             <td>200</td>
             <td><a href="~/construcao.cshtml?building=minaCarbono">Construir</a></td>
+
+
+
+
         </tr>
         <tr>
             <td>Estaleiros</td>
@@ -120,11 +144,6 @@
             <td>3000</td>
             <td><a href="~/construcao.cshtml?building=navemae">Construir</a></td>
         </tr>
-
-
-
-
-
 
     </table>
 

@@ -1,61 +1,60 @@
 ﻿<!DOCTYPE html>
+
+<div class="logo">
+    <img src="~/imagens/logoGalactus.jpg" />
+</div>
+
 <html>
 <head>
     <link href="~/styles/stylesheet.css" rel="stylesheet" />
     <title>Planetarion</title>
 </head>
+
+
+
+
 <body>
 
-    <table width="100%">
-        <tr>
-            <td>
-                <font face="Verdana"></font><br />
-                    <table width="100%" bgcolor="#1230" vertical-align="center">
-                 <tr>
+                <table width="100%" bgcolor="#00008B" vertical-align="center">
+                    <tr>
 
-                     <td class="style2">
-                         <a href="index.cshtml">Inicio</a>
-                         <a href="about.php">Regras</a>
+                        <td class="style2">
+                            <a href="index.cshtml">Inicio</a>
+                            <a href="about.php">Regras</a>
 
 
-                         @{
-                             if (Session["user"] == null)
-                             {
-                                 <a href="~/login.cshtml">Login</a>
-                                 <a href="~/register.cshtml">Cadastrar</a>
+                            @{
+                                if (Session["user"] == null)
+                                {
+                                    <a href="~/login.cshtml">Login</a>
+                                    <a href="~/register.cshtml">Cadastrar</a>
 
-                             }
-                             else
-                             {
-                                 <a href="~/preferencias.cshtml">Preferencias</a>
-                                 <a href="~/logout.cshtml">Sair</a>
-                                 <a href="~/universo.cshtml">Universo</a>
-                                 <a href="~/recursos.cshtml">Recursos</a>
-                                 <a href="endre.php">Comunicações</a>
-                                 <a href="~/construcao.cshtml">Construções</a>
-                                 <a href="endre.php">Produção</a>
-                                 <a href="endre.php">Pesquisa</a>
-                                 <a href="endre.php">Ondas</a>
-                                 <a href="endre.php">Militar</a>
-
-
-                             }
+                                }
+                                else
+                                {
+                                    <a href="~/preferencias.cshtml">Preferencias</a>
+                                    <a href="~/logout.cshtml">Sair</a>
+                                    <a href="~/universo.cshtml">Universo</a>
+                                    <a href="~/recursos.cshtml">Recursos</a>
+                                    <a href="endre.php">Comunicações</a>
+                                    <a href="~/construcao.cshtml">Construções</a>
+                                    <a href="~/producao.cshtml">Produção</a>
+                                    <a href="endre.php">Pesquisa</a>
+                                    <a href="endre.php">Ondas</a>
+                                    <a href="endre.php">Militar</a>
 
 
-                         }
+                                }
 
 
-                             </td>
-                   
-                 </tr>
-                
+                            }
 
-                     </table>
-                   
-                 
-             
 
-            </td>
+
+
+
+
+                                </td>
         </tr>
     </table>
 

@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imagens\logoGalactus.jpg" />
     <Content Include="styles\stylesheet.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -139,6 +140,7 @@
     <Content Include="preferencias.cshtml" />
     <Content Include="universo.cshtml" />
     <Content Include="recursos.cshtml" />
+    <Content Include="producao.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -148,9 +150,7 @@
     <Content Include="inc\_layout.cshtml" />
     <Content Include="inc\_sector.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="imagens\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
