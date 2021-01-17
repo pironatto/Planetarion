@@ -25,12 +25,12 @@
 
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <link href="~/styles/stylesheet.css" rel="stylesheet" />
+            <link href="~/styles/site.css" rel="stylesheet" />
         </head>
         <body>
 
-            <table width="50%">
-                <caption style="font-size:14px">Naves do Planeta</caption>
+            <table class="table table-bordered table-sm w-50">
+                <caption style="caption-side:top">Naves do Planeta</caption>
                 <tr>
                     <th>Nome</th>
                     <th>Tipo</th>
@@ -58,12 +58,11 @@
                 </tr>
             </table>
 
-            <br />
-            <p> Construir Naves</p>
-
+ 
             <form action="" method="post">
 
-                <table width="50%">
+                <table class="table table-bordered table-sm w-50">
+                    <caption style="caption-side:top">Coinstruir Naves:</caption>
                     <tr>
                         <td><input type="radio" name="cons" value="Asteca" /> Asteca </td>
                         <td>Custo : 1000 carbono </td>

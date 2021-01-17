@@ -1,63 +1,95 @@
-﻿<!DOCTYPE html>
-
-<div class="logo">
-    <img src="~/imagens/logoGalactus.jpg" />
-</div>
+﻿<!DOCTYPE html> 
 
 <html>
 <head>
-    <link href="~/styles/stylesheet.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/styles/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <title>Planetarion</title>
 </head>
-
-
-
-
 <body>
-
-                <table width="100%" bgcolor="#00008B" vertical-align="center">
-                    <tr>
-
-                        <td class="style2">
-                            <a href="index.cshtml">Inicio</a>
-                            <a href="about.php">Regras</a>
-
-
-                            @{
-                                if (Session["user"] == null)
-                                {
+    <header>
+        <nav class="navbar-brand navbar-expand-sm navbar-toogleable-sm navbar-light bg-white border-bottom box-shadow">
+            <div class-"container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="index.cshtml">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="about.php">Regras</a>
+                        </li>
+                        @{
+                            if (Session["user"] == null)
+                            {
+                                <li class="nav-link">
                                     <a href="~/login.cshtml">Login</a>
+                                </li>
+
+                                <li class="nav-link">
                                     <a href="~/register.cshtml">Cadastrar</a>
 
-                                }
-                                else
-                                {
-                                    <a href="~/preferencias.cshtml">Preferencias</a>
-                                    <a href="~/logout.cshtml">Sair</a>
+                                </li>
+
+                            }
+                            else
+                            {
+
+                                <li class="nav-link">
                                     <a href="~/universo.cshtml">Universo</a>
+
+                                </li>
+                                <li class="nav-link">
                                     <a href="~/recursos.cshtml">Recursos</a>
+
+                                </li>
+                                <li class="nav-link">
                                     <a href="endre.php">Comunicações</a>
+
+                                </li>
+                                <li class="nav-link">
                                     <a href="~/construcao.cshtml">Construções</a>
+
+                                </li>
+                                <li class="nav-link">
                                     <a href="~/producao.cshtml">Produção</a>
-                                    <a href="endre.php">Pesquisa</a>
+
+                                </li>
+                                <li class="nav-link">
+                                    <a href="~/Pesquisa.cshtml">Pesquisa</a>
+
+                                </li>
+                                <li class="nav-link">
                                     <a href="endre.php">Ondas</a>
+
+                                </li>
+                                <li class="nav-link">
                                     <a href="endre.php">Militar</a>
 
+                                </li>
+                                <li class="nav-link">
+                                    <a href="~/preferencias.cshtml">Preferencias</a>
 
-                                }
+                                </li>
+                                <li class="nav-link">
+                                    <a href="~/logout.cshtml">Sair</a>
+
+                                </li>
 
 
                             }
 
 
+                        }
+                    </ul>
+                </div>
+            </div>
+</nav>      
 
-
-
-
-                                </td>
-        </tr>
-    </table>
-
-
+    </header>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

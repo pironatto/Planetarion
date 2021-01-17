@@ -1,7 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link href="~/styles/stylesheet.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/styles/site.css" rel="stylesheet" />
+
     <title>Planetarion</title>
 </head>
 <body>
@@ -9,7 +12,17 @@
     @RenderPage("~/inc/_header.cshtml")
     @RenderPage("~/inc/_sector.cshtml")
     @RenderBody()
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+
+
+</html>
+<footer class="footer text-muted">
     @RenderPage("~/inc/_footer.cshtml")
 
-</body>
-</html>
+</footer>
+

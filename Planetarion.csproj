@@ -122,6 +122,28 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imagens\logoGalactus.jpg" />
+    <Content Include="js\site.js" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-grid.css" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-reboot.css" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <Content Include="lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <Content Include="lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <Content Include="lib\jquery-validation\dist\additional-methods.js" />
+    <Content Include="lib\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="lib\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="lib\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="lib\jquery\dist\jquery.js" />
+    <Content Include="lib\jquery\dist\jquery.min.js" />
+    <Content Include="lib\jquery\LICENSE.txt" />
+    <Content Include="styles\site.css" />
     <Content Include="styles\stylesheet.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -136,11 +158,25 @@
     <Content Include="login.cshtml" />
     <Content Include="logout.cshtml" />
     <Content Include="construcao.cshtml" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.js.map" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <Content Include="lib\bootstrap\LICENSE" />
+    <Content Include="lib\jquery-validation\LICENSE.md" />
+    <Content Include="lib\jquery\dist\jquery.min.map" />
     <None Include="packages.config" />
     <Content Include="preferencias.cshtml" />
     <Content Include="universo.cshtml" />
     <Content Include="recursos.cshtml" />
     <Content Include="producao.cshtml" />
+    <Content Include="Pesquisa.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

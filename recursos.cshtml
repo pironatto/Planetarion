@@ -46,7 +46,7 @@
                     Session["mensagem"] = cus;
                 }
 
-               else if (item.AstLivre < Quantidade)
+                else if (item.AstLivre < Quantidade)
                 {
                     Session["mensagem"] = suf;
                 }
@@ -98,89 +98,88 @@
 
 
         //TABELA DE RECURSOS
+        <head>
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-        <link href="~/styles/stylesheet.css" rel="stylesheet" />
-        <br />
-        <table width="50%">
-            <caption style="font-size:14px">Recursos do planeta</caption>
-            <tr>
-                <th>Carbono</th>
-                <th>Niobio</th>
-                <th>Plutonio</th>
-            </tr>
-            <tr>
-                <td>@item.carbono</td>
-                <td>@item.niobio</td>
-                <td>@item.plutonio</td>
-            </tr>
-        </table>
-
+        </head>
+        <div class="container">
+            <table class="table table-bordered table-sm w-50">
+                <caption style="caption-side:top">Recursos do planeta</caption>
+                <tr>
+                    <th>Carbono</th>
+                    <th>Niobio</th>
+                    <th>Plutonio</th>
+                </tr>
+                <tr>
+                    <td>@item.carbono</td>
+                    <td>@item.niobio</td>
+                    <td>@item.plutonio</td>
+                </tr>
+            </table>
+        </div>
+   
 
         // TABELA DE ASTEROIDES
 
-        <br />
-        <table width="50%">
-            <caption style="font-size:14px">Asteroides do planeta</caption>
-            <tr>
-                <th>Asteroide de Carbono</th>
-                <th>Asteroide de Niobio</th>
-                <th>Asteroide de Plutonio</th>
-                <th>Asteroides Livres</th>
+<div class="container">
+    <table class="table table-bordered table-sm w-50">
+        <caption style="caption-side:top">Asteroides do planeta</caption>
+        <tr>
+            <th>Asteroide de Carbono</th>
+            <th>Asteroide de Niobio</th>
+            <th>Asteroide de Plutonio</th>
+            <th>Asteroides Livres</th>
 
-            </tr>
-            <tr>
-                <td>@item.AstCarbono</td>
-                <td>@item.AstNiobio</td>
-                <td>@item.AstPlutonio</td>
-                <td>@item.AstLivre</td>
-            </tr>
-        </table>
-
-        <br />
-        <p> Inicializar Asteroides</p>
-        <p> Custo : @custo</p>
+        </tr>
+        <tr>
+            <td>@item.AstCarbono</td>
+            <td>@item.AstNiobio</td>
+            <td>@item.AstPlutonio</td>
+            <td>@item.AstLivre</td>
+        </tr>
+    </table>
 
 
+</div>
+<div class="container">
+    <table class="table table-bordered table-sm w-50">
+        <caption style="caption-side:top">Inicializar Asteroides&emsp;Custo Atual: @custo</caption>
+        
+    </table>
+
+    <form action="" method="post">
+        <input type="radio" name="iniAst" value="AstCarbono" /> Carbono <br />
+        <input type="radio" name="iniAst" value="AstNiobio" /> Niobio <br />
+        <input type="radio" name="iniAst" value="AstPlutonio" /> Plutonio<br />
+        Quantidade: <input type="number" name="qtdAst" min="1" value="1" />
+        
+        <input type="submit" name="iniciar" value="Iniciar" />
+    </form>
+
+</div>
+     
+            <script>
+                if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                }
+            </script>
+
+        }
 
 
-        <form action="" method="post">
-
-            <div>
-                <input type="radio" name="iniAst" value="AstCarbono" /> Carbono <br />
-                <input type="radio" name="iniAst" value="AstNiobio" /> Niobio <br />
-                <input type="radio" name="iniAst" value="AstPlutonio" /> Plutonio<br />
-                Quantidade: <input type="number" name="qtdAst" min="1" value="1" width="100" />
-
-            </div>
-            <br />
-
-            <div><input type="submit" name="iniciar" value="Iniciar" /></div>
 
 
-        </form>
 
-        <script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
+
+
+
+
+
+
+
+
+
+
+
+
     }
-        </script>
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}

@@ -11,10 +11,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="~/styles/stylesheet.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/styles/site.css" rel="stylesheet" />
     <title></title>
 </head>
+
 <body>
+    <img src="~/imagens/logoGalactus.jpg" />
     <p><font size="1">Game status: </font></p><br />
     <p><font color="red">(INSERIR VARIAVEL DOS TICKS)</font> segundos após o último tick.</p><br />
     @{
@@ -33,6 +36,9 @@
 
     <p> Tempo corrente: (VARIAVEL DE TEMPO DO TICK) <br /></p>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>
 

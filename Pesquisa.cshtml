@@ -1,0 +1,67 @@
+﻿@using WebMatrix.Data;
+
+@{ Layout = "~/inc/_layout.cshtml";
+
+    var nome = Session["user"];
+    Database bd = Database.Open("Conexao");
+    var dados = bd.Query("SELECT * FROM usuarios WHERE nome = @0", nome);
+
+    foreach (var item in dados)
+    {
+
+
+    }
+
+
+}
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Pesquisa</title>
+    </head>
+    <body>
+
+        <table class="table table-bordered">
+            <caption style="caption-side:top">Pesquisas disponíveis para o planeta:</caption>
+            <tr>
+                <th>Pesquisa</th>
+                <th>Descrição</th>
+                <th>Tempo</th>
+                <th>Custo em Niobio</th>
+                <th>Clique para Pesquisar</th>
+            </tr>
+            <tr>
+                <td>Mineração aprimorada</td>
+                <td>Permite construir minas de Carbono</td>
+                <td>10</td>
+                <td>100</td>
+                <td><a href="~/Pesquisa.cshtml?building=pesMinaCarb">Pesquisar</a></td>
+            </tr>
+            <tr>
+                <td>Tecnologia de Aeronaves</td>
+                <td>Permite construir naves</td>
+                <td>12</td>
+                <td>200</td>
+                <td><a href="~/Pesquisa.cshtml?building=pesTecAero">Pesquisar</a></td>
+            </tr>
+            <tr>
+                <td>Desenvolvimento de radares de varredura</td>
+                <td>Permite realizar a construção de drones espiões</td>
+                <td>16</td>
+                <td>400</td>
+                <td><a href="~/Pesquisa.cshtml?building=pesDesRad">Pesquisar</a></td>
+            </tr>
+            <tr>
+                <td>Tecnologia de Grandes Naves</td>
+                <td>Permite desenvolver a construção de grandes naves</td>
+                <td>16</td>
+                <td>800</td>
+                <td><a href="~/Pesquisa.cshtml?building=pesTecNav">Pesquisar</a></td>
+            </tr>
+          
+        </table>
+
+
+    </body>
+</html>
